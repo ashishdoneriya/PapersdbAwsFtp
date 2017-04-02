@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	metadata-complete="true">
+
+	<display-name>ManitPapers</display-name>
+
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+	</welcome-file-list>
+
+<!-- 	<filter> -->
+<!-- 		<filter-name>UrlRewriteFilter</filter-name> -->
+<!-- 		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>UrlRewriteFilter</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 		<dispatcher>REQUEST</dispatcher> -->
+<!-- 		<dispatcher>FORWARD</dispatcher> -->
+<!-- 	</filter-mapping> -->
+
+	<!-- Spring MVC -->
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/dispatcherServlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>ExpiresFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+		<init-param>
+			<param-name>ExpiresByType image</param-name>
+			<param-value>access plus 1 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType text/css</param-name>
+			<param-value>access plus 1 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType application/javascript</param-name>
+			<param-value>access plus 1 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType application/x-font-woff</param-name>
+			<param-value>access plus 10 months</param-value>
+		</init-param>
+	</filter>
+	<mime-mapping>
+		<extension>woff</extension>
+		<mime-type>application/x-font-woff</mime-type>
+	</mime-mapping>
+	<!-- years months weeks days hours minutes seconds -->
+
+	<filter-mapping>
+		<filter-name>ExpiresFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+</web-app>
+

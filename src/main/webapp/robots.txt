@@ -1,0 +1,8 @@
+User-agent:  *
+Disallow: /static/
+Disallow: /js/
+Disallow: /css/
+Disallow: /images/
+Disallow: /home.html
+Disallow: /login.html
+
